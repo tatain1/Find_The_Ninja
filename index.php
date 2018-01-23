@@ -5,8 +5,6 @@
     <title>Find The Ninja</title>
 </head>
 <body>
-    <!-- <script src="classes/Personnage.js"></script> -->
-    <script type="text/javascript" src="ninja.js"></script>
     <script type="text/javascript" src="des.js"></script>
     <script type="text/javascript" src="game.js"></script>
 
