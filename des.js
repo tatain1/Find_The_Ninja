@@ -37,7 +37,7 @@ var DesArme = function(){
   }
 
   if (getRandomInt(1, 3) == 1) {
-    this.result = "Shuriken";
+    this.result = "Kunaï";
   } else {
     this.result = "Katana";
   }

@@ -3,25 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Find The Ninja</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p class="center">
+          Vous devez trouver le ninja correspondant à cette description :
+          <span id="D1"></span>, <span id="D2"></span> & <span id="D3"></span>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(hrk)"><img src="images/HRK.png" class="img_Ninja"></a><br>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(hrs)"><img src="images/HRS.png" class="img_Ninja"></a><br>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(hvk)"><img src="images/HVK.png" class="img_Ninja"></a><br>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(hvs)"><img src="images/HVS.png" class="img_Ninja"></a><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(frk)"><img src="images/FRK.png" class="img_Ninja"></a><br>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(frs)"><img src="images/FRS.png" class="img_Ninja"></a><br>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(fvk)"><img src="images/FVK.png" class="img_Ninja"></a><br>
+      </div>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <a href="#" onclick="verifNinja(fvs)"><img src="images/FVS.png" class="img_Ninja"></a><br>
+      </div>
+    </div>
+  </div>
 
-    <p>
-      Vous devez trouver le ninja correspondant à cette description :
-      <span id="D1"></span>, <span id="D2"></span> & <span id="D3"></span>
-    </p>
-
-    <p>
-      <h1>Liste des ninjas presents :</h1>
-      <a href="#" onclick="verifNinja(hrk)">HRK</a><br>
-      <a href="#" onclick="verifNinja(hrs)">HRS</a><br>
-      <a href="#" onclick="verifNinja(hvk)">HVK</a><br>
-      <a href="#" onclick="verifNinja(hvs)">HVS</a><br>
-      <a href="#" onclick="verifNinja(frk)">FRK</a><br>
-      <a href="#" onclick="verifNinja(frs)">FRS</a><br>
-      <a href="#" onclick="verifNinja(fvk)">FVK</a><br>
-      <a href="#" onclick="verifNinja(fvs)">FVS</a><br>
-    </p>
 
     <script type="text/javascript" src="des.js"></script>
     <script type="text/javascript" src="game.js"></script>

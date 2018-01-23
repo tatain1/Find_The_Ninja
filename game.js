@@ -5,13 +5,13 @@ var des3 = new DesArme();
 
 if (des1.result ==  "Homme") {
   if (des2.result == "Rouge") {
-    if (des3.result == "Shuriken") {
+    if (des3.result == "Kunaï") {
       var target = "HRS";
     } else {
       var target ="HRK"
     }
   } else {
-    if (des3.result == "Shuriken") {
+    if (des3.result == "Kunaï") {
       var target = "HVS";
     } else {
       var target ="HVK"
@@ -19,13 +19,13 @@ if (des1.result ==  "Homme") {
   }
 } else {
   if (des2.result == "Rouge") {
-    if (des3.result == "Shuriken") {
+    if (des3.result == "Kunaï") {
       var target = "FRS";
     } else {
       var target ="FRK"
     }
   } else {
-    if (des3.result == "Shuriken") {
+    if (des3.result == "Kunaï") {
       var target = "FVS";
     } else {
       var target ="FVK"
