@@ -5,8 +5,6 @@
     <title>Find The Ninja</title>
 </head>
 <body>
-    <script type="text/javascript" src="des.js"></script>
-    <script type="text/javascript" src="game.js"></script>
 
     <p>
       Vous devez trouver le ninja correspondant à cette description :
@@ -25,6 +23,8 @@
       <a href="#" onclick="verifNinja(fvs)">FVS</a><br>
     </p>
 
+    <script type="text/javascript" src="des.js"></script>
+    <script type="text/javascript" src="game.js"></script>
     <script type="text/javascript">
       console.log(target);
       console.log(des1);
