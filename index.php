@@ -15,7 +15,20 @@
       <span id="D1"></span>, <span id="D2"></span> & <span id="D3"></span>
     </p>
 
+    <p>
+      <h1>Liste des ninjas presents :</h1>
+      <a href="#" onclick="verifNinja(hrk)">HRK</a><br>
+      <a href="#" onclick="verifNinja(hrs)">HRS</a><br>
+      <a href="#" onclick="verifNinja(hvk)">HVK</a><br>
+      <a href="#" onclick="verifNinja(hvs)">HVS</a><br>
+      <a href="#" onclick="verifNinja(frk)">FRK</a><br>
+      <a href="#" onclick="verifNinja(frs)">FRS</a><br>
+      <a href="#" onclick="verifNinja(fvk)">FVK</a><br>
+      <a href="#" onclick="verifNinja(fvs)">FVS</a><br>
+    </p>
+
     <script type="text/javascript">
+      console.log(target);
       console.log(des1);
       console.log(des2);
       console.log(des3);
