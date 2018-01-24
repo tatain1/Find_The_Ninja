@@ -2,6 +2,10 @@
   text-align: center;
 }
 
-.img_Ninja {
+.tuile {
   width: 100%;
+}
+
+.hidden {
+  display: none;
 }

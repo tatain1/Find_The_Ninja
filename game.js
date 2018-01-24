@@ -1,4 +1,3 @@
-//creation de l'arene
 var des1 = new DesSex();
 var des2 = new DesColor();
 var des3 = new DesArme();
@@ -44,8 +43,11 @@ var fvs = "FVS";
 
 var verifNinja = function(target){
   if (this.target == target) {
+    chronoStop();
+    alert("Gagné !!!");
     console.log("Ok");
   } else {
+    alert("Perdu !!!");
     console.log("Non");
   }
 }
