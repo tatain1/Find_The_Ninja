@@ -1,9 +1,11 @@
 Ré-adaptation d'un jeu de société géré en JavaScript.
 
 Reste a faire :
-* preparer les images des ninjas pour remplacer les liens.
+* preparer les images des ninjas pour remplacer les liens. : DONE !
 * Inclure les portes d'entrés.
 * Inclure les changement de sexe, arme et couleur.
-* Timer pour le scoring.
+* Timer pour le scoring. : DONE !
+* Mise en place du scoring a proprement parlé.
 * Possibilité d'activer/desactiver les modules de changement de sexe, arme et couleur (mode de difficulté).
 * Randomiser le placement des ninjas.
+* Mode de jeu "foule".
