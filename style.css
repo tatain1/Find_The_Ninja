@@ -9,3 +9,60 @@
 .hidden {
   display: none;
 }
+
+/* ZONE DE TEST */
+.test {
+  height: 50px;
+  width: 100%;
+}
+
+.caseTest1 {
+  height: 100%;
+  width: 14.285%;
+  margin-left: -3px;
+  margin-right: -2px;
+  display: inline-block;
+  background-color: green;
+}
+
+.caseTest2 {
+  height: 100%;
+  width: 14.285%;
+  margin-left: -3px;
+  margin-right: -2px;
+  display: inline-block;
+  background-color: blue;
+}
+
+.plateauTest {
+  /* height: 500px; */
+  width: 100%;
+}
+.ligneTest {
+  /* height: 100px; */
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background-color: red;
+}
+.ligneTest2 {
+  /* height: 100px; */
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background-color: pink;
+}
+.tuileTest1 {
+  /* height: 100px; */
+  width: 10%;
+  background-color: blue;
+  display: inline-block;
+}
+.tuileTest2 {
+  /* height: 100px; */
+  width: 10%;
+  background-color: green;
+  display: inline-block;
+}
+.ninjatest {
+  width: 100%;
+  height: 100%;
+}
