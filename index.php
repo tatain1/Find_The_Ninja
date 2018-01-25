@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
+<?php
+$my_arrays = array("hrk", "hrs", "hvk", "hvs", "frk", "frs", "fvk", "fvs");
+shuffle($my_arrays);
+?>
+
 <body onload = "chronoStart()">
   <div class="container-fluid">
     <div class="row">
@@ -21,30 +27,30 @@
     </div>
     <div class="row">
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(hrk)"><img src="images/HRK.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[0]?>)"><img src="images/<?php echo $my_arrays[0] ?>.png" class="tuile"></a><br>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(hrs)"><img src="images/HRS.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[1]?>)"><img src="images/<?php echo $my_arrays[1] ?>.png" class="tuile"></a><br>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(hvk)"><img src="images/HVK.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[2]?>)"><img src="images/<?php echo $my_arrays[2] ?>.png" class="tuile"></a><br>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(hvs)"><img src="images/HVS.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[3]?>)"><img src="images/<?php echo $my_arrays[3] ?>.png" class="tuile"></a><br>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(frk)"><img src="images/FRK.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[4]?>)"><img src="images/<?php echo $my_arrays[4] ?>.png" class="tuile"></a><br>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(frs)"><img src="images/FRS.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[5]?>)"><img src="images/<?php echo $my_arrays[5] ?>.png" class="tuile"></a><br>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(fvk)"><img src="images/FVK.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[6]?>)"><img src="images/<?php echo $my_arrays[6] ?>.png" class="tuile"></a><br>
       </div>
       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <a href="#" onclick="verifNinja(fvs)"><img src="images/FVS.png" class="tuile"></a><br>
+        <a href="#" onclick="verifNinja(<?php echo $my_arrays[7]?>)"><img src="images/<?php echo $my_arrays[7] ?>.png" class="tuile"></a><br>
       </div>
     </div>
   </div>
