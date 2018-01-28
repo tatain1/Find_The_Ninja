@@ -9,8 +9,34 @@
 </head>
 
 <?php
+include 'functions.php';
+
 $my_arrays = array("hrk", "hrs", "hvk", "hvs", "frk", "frs", "fvk", "fvs");
-shuffle($my_arrays);
+// Decommenter ci-dessous un fois test = OK.
+// shuffle($my_arrays);
+
+$key = 0;
+// Ci-dessous "hvs" = pour le test ; changera dynamiquement.
+$target = "";
+$dice_target_result = "fvs";
+// Ci-dessous "1" = pour le test ; changera dynamiquement.
+$dice_gate_result = 2;
+$sens = "";
+
+if (isPaire($dice_gate_result)) {
+  $sens = "Horaire";
+} else {
+  $sens = "Anti-horaire";
+}
+
+
+while ($target != $dice_target_result) {
+  checkTarget($my_arrays, $key ,$dice_target_result);
+}
+
+
+die();
+
 ?>
 
 <body>
