@@ -11,6 +11,51 @@
 <?php
 include 'functions.php';
 
+$plateau = array(
+  1 => array(
+    "type" => "ninja",
+    "nom" => "hrk1",
+    "attributs" => "hrk"
+  ),
+  2 => array(
+    "type" => "ninja",
+    "nom" => "hrk2",
+    "attributs" => "hrk"
+  ),
+  4 => array(
+    "type" => "ninja",
+    "nom" => "fvs1",
+    "attributs" => "fvs"
+  ),
+  5 => array(
+    "type" => "ninja",
+    "nom" => "fvs2",
+    "attributs" => "fvs"
+  )
+);
+
+$portes = array(
+  0 => array(
+    "type" => "porte",
+    "color" => "blue"
+  ),
+  1 => array(
+    "type" => "porte",
+    "color" => "red"
+  ),
+);
+
+kshuffle($plateau);
+$plateau[0] = $portes[0];
+$plateau[3] = $portes[1];
+
+echo '<pre>';
+print_r($plateau[0]);
+echo '</pre>';
+die();
+
+
+
 $my_arrays = array("hrk", "hrs", "hvk", "hvs", "frk", "frs", "fvk", "fvs");
 // Decommenter ci-dessous un fois test = OK.
 // shuffle($my_arrays);
