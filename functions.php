@@ -62,17 +62,17 @@ function checkTarget($array, $key ,$dice) {
   }
 }
 
-function goToNextTile($current_tile) {
-  if ($current_tile == 18) {
+function goToNextTile($current_tile, $plateau_size) {
+  if ($current_tile == $plateau_size-1) {
     return $current_tile = 0;
   } else {
     return $current_tile = $current_tile+1;
   }
 }
 
-function goToPreviousTile($current_tile) {
+function goToPreviousTile($current_tile, $plateau_size) {
   if ($current_tile == 0) {
-    return $current_tile = 18;
+    return $current_tile = $plateau_size-1;
   } else {
     return $current_tile = $current_tile-1;
   }

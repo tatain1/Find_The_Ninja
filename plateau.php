@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Find The Ninja</title>
     <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -120,16 +120,10 @@ $plateau[0] = $portes[0];
 $plateau[7] = $portes[1];
 $plateau[14] = $portes[2];
 
-foreach ($plateau as $key => $tuile) {
-  echo $key. ' ' .$tuile['type']. ', ' .$tuile['nom']. ', ' .$tuile['attributs']. '<br>';
-}
-
 $plateau_size = count($plateau);
-echo '<br> Taille du plateau : ' .$plateau_size. '<br>';
 
 // Tirage de la porte d'entrée
 $de_porte = rand(1, 6);
-// $de_porte = 6;
 $porte_d_entree = entryGate($de_porte);
 $sens = isPaire($de_porte);
 
@@ -138,85 +132,104 @@ $de_sexe = defineSex(rand(1, 2));
 $de_couleur = defineColor(rand(1, 2));
 $de_arme =  defineWeapon(rand(1, 2));
 $attributs = $de_sexe.$de_couleur.$de_arme;
-// $attributs = "red";
 
 // Definition de la cible
 $current_tile = $porte_d_entree;
 if ($sens == 'horaire') {
   while ($plateau[$current_tile]['attributs'] !== $attributs) {
-    $current_tile = goToNextTile($current_tile);
+    $current_tile = goToNextTile($current_tile, $plateau_size);
   }
 
   $target = $plateau[$current_tile]['nom'];
 
 } elseif ($sens == 'anti-horaire') {
   while ($plateau[$current_tile]['attributs'] !== $attributs) {
-    $current_tile = goToPreviousTile($current_tile);
+    $current_tile = goToPreviousTile($current_tile, $plateau_size);
   }
 
   $target = $plateau[$current_tile]['nom'];
 }
 
-
-echo '<br> Dé de porte = ' .$de_porte. '<br>';
-echo 'Key de la porte : ' .$porte_d_entree. '<br>';
-echo $sens. '<br><br>';
-
-echo 'Attributs du ninja recherché : ' .$attributs. '<br>';
-echo 'Nom du ninja recherché : ' .$target. '<br>';
-
-die();
 ?>
 
-<body>
+<body onload = "chronoStart()">
   <!-- ZONE DE TEST  -->
-  <!-- <div class="rules">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </div> -->
+  <div class="rules">
+    <p class="center">
+      <span id="chronotime">0:00:00:00</span>
+      <input type="button" onclick='window.location.reload(false)' value="Recommencer"/>
+    </p>
+    <form name="chronoForm" class="hidden">
+        <input type="button" name="startstop" value="start!" onClick="chronoStart()" />
+        <input type="button" name="reset" value="reset!" onClick="chronoReset()" />
+    </form>
+  </div>
   <div class="plateauTest">
     <div class="ligneTest">
       <div class="vide15"></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest2"><p style="width:100%;text-align:center;margin-bottom:0px;">ICI PORTE FIXE</p></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[16]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[16]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[17]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[17]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[18]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[18]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><img src="images/<?php echo $plateau[0]['nom']; ?>.png" class="ninjatest"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[1]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[1]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[2]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[2]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[3]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[3]['attributs']; ?>.png" class="ninjatest"></a></div>
     </div>
     <div class="ligneTest2">
       <div class="vide10"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="vide60"><p style="width:100%;text-align:center;margin-bottom:0px;">Vous recherchez :</p></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[15]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[15]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="vide60"><p style="width:100%;text-align:center;margin-bottom:0px;">Vous recherchez :<span id="target" class="hidden"><?php echo $target; ?></span></p></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[4]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[4]['attributs']; ?>.png" class="ninjatest"></a></div>
     </div>
     <div class="ligneTest">
       <div class="vide10"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="vide15"><p style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $my_arrays[0] ?></p></div>
-      <div class="vide15"><p style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $my_arrays[1] ?></p></div>
-      <div class="vide15"><p style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $my_arrays[2] ?></p></div>
-      <div class="vide15"><p style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $my_arrays[3] ?></p></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
+      <div class="tuileTest2"><img src="images/<?php echo $plateau[14]['nom']; ?>.png" class="ninjatest"></div>
+      <div class="vide15"><p id="de-sex" style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $de_sexe ?></p></div>
+      <div class="vide15"><p id="de-color" style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $de_couleur ?></p></div>
+      <div class="vide15"><p id="de-weapon" style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $de_arme ?></p></div>
+      <div class="vide15"><p style="width:100%;text-align:center;margin-bottom:0px;"><?php echo $porte_d_entree. ', ' .$sens ?></p></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[5]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[5]['attributs']; ?>.png" class="ninjatest"></a></div>
     </div>
     <div class="ligneTest2">
       <div class="vide10"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[13]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[13]['attributs']; ?>.png" class="ninjatest"></a></div>
       <div class="vide60"></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[6]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[6]['attributs']; ?>.png" class="ninjatest"></a></div>
     </div>
     <div class="ligneTest">
       <div class="vide20"></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest1"><img src="images/ninjatest.png" class="ninjatest"></div>
-      <div class="tuileTest2"><img src="images/ninjatest.png" class="ninjatest"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[12]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[12]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[11]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[11]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[10]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[10]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[9]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[9]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[8]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[8]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><img src="images/<?php echo $plateau[7]['nom']; ?>.png" class="ninjatest"></div>
     </div>
 
 
   </div>
+
+  <script type="text/javascript" src="chrono.js"></script>
+  <!-- <script type="text/javascript" src="des.js"></script> -->
+  <script type="text/javascript" src="game.js"></script>
+
+  <script type="text/javascript">
+    var de_sex = document.getElementById("de-sex");
+    var de_sex = de_sex.textContent;
+    var de_color = document.getElementById("de-color");
+    var de_color = de_color.textContent;
+    var de_weapon = document.getElementById("de-weapon");
+    var de_weapon = de_weapon.textContent;
+
+    var target = document.getElementById("target");
+    var target = target.textContent;
+
+    console.log(de_sex);
+    console.log(de_color);
+    console.log(de_weapon);
+    console.log(target);
+  </script>
+
 
 </body>
 </html>

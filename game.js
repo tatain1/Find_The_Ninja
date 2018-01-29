@@ -1,48 +1,25 @@
-var des1 = new DesSex();
-var des2 = new DesColor();
-var des3 = new DesArme();
+var hrk1 = "hrk1";
+var hrs1 = "hrs1";
+var hvk1 = "hvk1";
+var hvs1 = "hvs1";
+var frk1 = "frk1";
+var frs1 = "frs1";
+var fvk1 = "fvk1";
+var fvs1 = "fvs1";
 
-if (des1.result ==  "Homme") {
-  if (des2.result == "Rouge") {
-    if (des3.result == "Kunaï") {
-      var target = "HRS";
-    } else {
-      var target ="HRK"
-    }
-  } else {
-    if (des3.result == "Kunaï") {
-      var target = "HVS";
-    } else {
-      var target ="HVK"
-    }
-  }
-} else {
-  if (des2.result == "Rouge") {
-    if (des3.result == "Kunaï") {
-      var target = "FRS";
-    } else {
-      var target ="FRK"
-    }
-  } else {
-    if (des3.result == "Kunaï") {
-      var target = "FVS";
-    } else {
-      var target ="FVK"
-    }
-  }
-}
+var hrk2 = "hrk2";
+var hrs2 = "hrs2";
+var hvk2 = "hvk2";
+var hvs2 = "hvs2";
+var frk2 = "frk2";
+var frs2 = "frs2";
+var fvk2 = "fvk2";
+var fvs2 = "fvs2";
 
-var hrk = "HRK";
-var hrs = "HRS";
-var hvk = "HVK";
-var hvs = "HVS";
-var frk = "FRK";
-var frs = "FRS";
-var fvk = "FVK";
-var fvs = "FVS";
-
-var verifNinja = function(target){
-  if (this.target == target) {
+var verifNinja = function(tuile, target){
+  console.log(tuile);
+  console.log(this.target);
+  if (tuile == target) {
     chronoStop();
     alert("Gagné !!!");
     console.log("Ok");
