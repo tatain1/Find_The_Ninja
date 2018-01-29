@@ -10,7 +10,7 @@ function isPaire($dice) {
   if ($dice % 2 == 0) {
     return 'horaire';
   } elseif ($dice % 2 == 1) {
-    return 'anti-horaire';
+    return 'antihoraire';
   }
 }
 
@@ -21,6 +21,16 @@ function entryGate($dice) {
     return 7;
   } elseif ($dice == 5 || $dice == 6) {
     return 14;
+  }
+}
+
+function getEntryColor($dice) {
+  if ($dice == 1 || $dice == 2) {
+    return 'blue';
+  } elseif ($dice == 3 || $dice == 4) {
+    return 'red';
+  } elseif ($dice == 5 || $dice == 6) {
+    return 'yellow';
   }
 }
 
