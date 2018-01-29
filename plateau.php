@@ -129,6 +129,7 @@ echo '<br> Taille du plateau : ' .$plateau_size. '<br>';
 
 // Tirage de la porte d'entrée
 $de_porte = rand(1, 6);
+// $de_porte = 6;
 $porte_d_entree = entryGate($de_porte);
 $sens = isPaire($de_porte);
 
@@ -137,46 +138,34 @@ $de_sexe = defineSex(rand(1, 2));
 $de_couleur = defineColor(rand(1, 2));
 $de_arme =  defineWeapon(rand(1, 2));
 $attributs = $de_sexe.$de_couleur.$de_arme;
+// $attributs = "red";
 
 // Definition de la cible
+$current_tile = $porte_d_entree;
+if ($sens == 'horaire') {
+  while ($plateau[$current_tile]['attributs'] !== $attributs) {
+    $current_tile = goToNextTile($current_tile);
+  }
+
+  $target = $plateau[$current_tile]['nom'];
+
+} elseif ($sens == 'anti-horaire') {
+  while ($plateau[$current_tile]['attributs'] !== $attributs) {
+    $current_tile = goToPreviousTile($current_tile);
+  }
+
+  $target = $plateau[$current_tile]['nom'];
+}
 
 
 echo '<br> Dé de porte = ' .$de_porte. '<br>';
-echo $porte_d_entree. '<br>';
+echo 'Key de la porte : ' .$porte_d_entree. '<br>';
 echo $sens. '<br><br>';
 
-echo $attributs. '<br>';
+echo 'Attributs du ninja recherché : ' .$attributs. '<br>';
+echo 'Nom du ninja recherché : ' .$target. '<br>';
 
 die();
-
-
-
-$my_arrays = array("hrk", "hrs", "hvk", "hvs", "frk", "frs", "fvk", "fvs");
-// Decommenter ci-dessous un fois test = OK.
-// shuffle($my_arrays);
-
-$key = 0;
-// Ci-dessous "hvs" = pour le test ; changera dynamiquement.
-$target = "";
-$dice_target_result = "fvs";
-// Ci-dessous "1" = pour le test ; changera dynamiquement.
-$dice_gate_result = 2;
-$sens = "";
-
-if (isPaire($dice_gate_result)) {
-  $sens = "Horaire";
-} else {
-  $sens = "Anti-horaire";
-}
-
-
-while ($target != $dice_target_result) {
-  checkTarget($my_arrays, $key ,$dice_target_result);
-}
-
-
-die();
-
 ?>
 
 <body>

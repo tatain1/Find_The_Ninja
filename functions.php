@@ -16,11 +16,11 @@ function isPaire($dice) {
 
 function entryGate($dice) {
   if ($dice == 1 || $dice == 2) {
-    return 'Porte Bleue';
+    return 0;
   } elseif ($dice == 3 || $dice == 4) {
-    return 'Porte Rouge';
+    return 7;
   } elseif ($dice == 5 || $dice == 6) {
-    return 'Porte Jaune';
+    return 14;
   }
 }
 
@@ -51,12 +51,30 @@ function defineWeapon($dice) {
 function checkTarget($array, $key ,$dice) {
   if ($array[$key] != $dice) {
     $key = $key + 1;
+    echo $key;
+    die();
     checkTarget($array, $key ,$dice);
   } else {
     echo "ok, stop ";
     echo $array[$key]. ' ';
     echo $dice. ' ';
     die();
+  }
+}
+
+function goToNextTile($current_tile) {
+  if ($current_tile == 18) {
+    return $current_tile = 0;
+  } else {
+    return $current_tile = $current_tile+1;
+  }
+}
+
+function goToPreviousTile($current_tile) {
+  if ($current_tile == 0) {
+    return $current_tile = 18;
+  } else {
+    return $current_tile = $current_tile-1;
   }
 }
 
