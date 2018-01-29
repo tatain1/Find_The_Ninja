@@ -3,7 +3,7 @@ Ré-adaptation d'un jeu de société géré en JavaScript.
 Reste a faire :
 * Mise en forme generale.
 * preparer les images des ninjas pour remplacer les liens. : DONE !
-* Inclure les portes d'entrés.
+* Inclure les portes d'entrés. : DONE !
 * Inclure les conduits d'aeration.
 * Inclure les changement de sexe, arme et couleur.
 * Timer pour le scoring. : DONE !
