@@ -1,9 +1,50 @@
 <?php
+
+function debug($array) {
+  echo '<pre>';
+  print_r($array);
+  echo '</pre>';
+}
+
 function isPaire($dice) {
   if ($dice % 2 == 0) {
-    return true;
+    return 'horaire';
   } elseif ($dice % 2 == 1) {
-    return false;
+    return 'anti-horaire';
+  }
+}
+
+function entryGate($dice) {
+  if ($dice == 1 || $dice == 2) {
+    return 'Porte Bleue';
+  } elseif ($dice == 3 || $dice == 4) {
+    return 'Porte Rouge';
+  } elseif ($dice == 5 || $dice == 6) {
+    return 'Porte Jaune';
+  }
+}
+
+function defineSex($dice) {
+  if ($dice == 1) {
+    return 'h';
+  } elseif ($dice == 2) {
+    return 'f';
+  }
+}
+
+function defineColor($dice) {
+  if ($dice == 1) {
+    return 'r';
+  } elseif ($dice == 2) {
+    return 'v';
+  }
+}
+
+function defineWeapon($dice) {
+  if ($dice == 1) {
+    return 'k';
+  } elseif ($dice == 2) {
+    return 's';
   }
 }
 
@@ -19,20 +60,5 @@ function checkTarget($array, $key ,$dice) {
   }
 }
 
-function kshuffle(&$array) {
-    if(!is_array($array) || empty($array)) {
-        return false;
-    }
-    $tmp = array();
-    foreach($array as $key => $value) {
-        $tmp[] = array('k' => $key, 'v' => $value);
-    }
-    shuffle($tmp);
-    $array = array();
-    foreach($tmp as $entry) {
-        $array[$entry['k']] = $entry['v'];
-    }
-    return true;
-}
 
  ?>

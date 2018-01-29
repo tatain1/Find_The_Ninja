@@ -12,22 +12,82 @@
 include 'functions.php';
 
 $plateau = array(
-  1 => array(
+  0 => array(
     "type" => "ninja",
     "nom" => "hrk1",
     "attributs" => "hrk"
   ),
-  2 => array(
+  1 => array(
     "type" => "ninja",
     "nom" => "hrk2",
     "attributs" => "hrk"
   ),
+  2 => array(
+    "type" => "ninja",
+    "nom" => "hrs1",
+    "attributs" => "hrs"
+  ),
+  3 => array(
+    "type" => "ninja",
+    "nom" => "hrs2",
+    "attributs" => "hrs"
+  ),
   4 => array(
+    "type" => "ninja",
+    "nom" => "hvk1",
+    "attributs" => "hvk"
+  ),
+  5 => array(
+    "type" => "ninja",
+    "nom" => "hvk2",
+    "attributs" => "hvk"
+  ),
+  6 => array(
+    "type" => "ninja",
+    "nom" => "hvs1",
+    "attributs" => "hvs"
+  ),
+  7 => array(
+    "type" => "ninja",
+    "nom" => "hvs2",
+    "attributs" => "hvs"
+  ),
+  8 => array(
+    "type" => "ninja",
+    "nom" => "frk1",
+    "attributs" => "frk"
+  ),
+  9 => array(
+    "type" => "ninja",
+    "nom" => "frk2",
+    "attributs" => "frk"
+  ),
+  10 => array(
+    "type" => "ninja",
+    "nom" => "frs1",
+    "attributs" => "frs"
+  ),
+  11 => array(
+    "type" => "ninja",
+    "nom" => "frs2",
+    "attributs" => "frs"
+  ),
+  12 => array(
+    "type" => "ninja",
+    "nom" => "fvk1",
+    "attributs" => "fvk"
+  ),
+  13 => array(
+    "type" => "ninja",
+    "nom" => "fvk2",
+    "attributs" => "fvk"
+  ),
+  14 => array(
     "type" => "ninja",
     "nom" => "fvs1",
     "attributs" => "fvs"
   ),
-  5 => array(
+  15 => array(
     "type" => "ninja",
     "nom" => "fvs2",
     "attributs" => "fvs"
@@ -37,21 +97,56 @@ $plateau = array(
 $portes = array(
   0 => array(
     "type" => "porte",
-    "color" => "blue"
+    "nom" => "portebleue",
+    "attributs" => "blue"
   ),
   1 => array(
     "type" => "porte",
-    "color" => "red"
+    "nom" => "porterouge",
+    "attributs" => "red"
   ),
+  2 => array(
+    "type" => "porte",
+    "nom" => "portejaune",
+    "attributs" => "yellow"
+  )
 );
 
-kshuffle($plateau);
-$plateau[0] = $portes[0];
-$plateau[3] = $portes[1];
+// Preparation du plateau de jeu
+shuffle($plateau);
+array_push($plateau, $plateau[0], $plateau[7], $plateau[14]);
 
-echo '<pre>';
-print_r($plateau[0]);
-echo '</pre>';
+$plateau[0] = $portes[0];
+$plateau[7] = $portes[1];
+$plateau[14] = $portes[2];
+
+foreach ($plateau as $key => $tuile) {
+  echo $key. ' ' .$tuile['type']. ', ' .$tuile['nom']. ', ' .$tuile['attributs']. '<br>';
+}
+
+$plateau_size = count($plateau);
+echo '<br> Taille du plateau : ' .$plateau_size. '<br>';
+
+// Tirage de la porte d'entrée
+$de_porte = rand(1, 6);
+$porte_d_entree = entryGate($de_porte);
+$sens = isPaire($de_porte);
+
+// Tirage des attributs de la cible
+$de_sexe = defineSex(rand(1, 2));
+$de_couleur = defineColor(rand(1, 2));
+$de_arme =  defineWeapon(rand(1, 2));
+$attributs = $de_sexe.$de_couleur.$de_arme;
+
+// Definition de la cible
+
+
+echo '<br> Dé de porte = ' .$de_porte. '<br>';
+echo $porte_d_entree. '<br>';
+echo $sens. '<br><br>';
+
+echo $attributs. '<br>';
+
 die();
 
 
