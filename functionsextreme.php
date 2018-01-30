@@ -18,19 +18,9 @@ function entryGate($dice) {
   if ($dice == 1 || $dice == 2) {
     return 0;
   } elseif ($dice == 3 || $dice == 4) {
-    return 7;
+    return 9;
   } elseif ($dice == 5 || $dice == 6) {
-    return 14;
-  }
-}
-
-function entryGateM($dice) {
-  if ($dice == 1 || $dice == 2) {
-    return 0;
-  } elseif ($dice == 3 || $dice == 4) {
-    return 8;
-  } elseif ($dice == 5 || $dice == 6) {
-    return 16;
+    return 18;
   }
 }
 
