@@ -192,8 +192,7 @@ if ($sens == 'horaire') {
       <a href="index.php">MODE FACILE</a> <a href="moyen.php">MODE MOYEN</a> <a href="difficile.php">MODE DIFFICILE</a> <a href="extreme.php">MODE EXTREME</a>
     </p>
     <p>
-      Désormais, les ninjas peuvent emprunter des trappes. Si le ninja que vous cherchez à rencontré une trappe sur sa route, il
-      y est entré et est ressorti par la trappe suivante avant de continuer son chemin.
+      Plus fourbes que jamais, nos ninjas peuvent desormais changer de couleur de vetement, d'arme et meme de sexe ! Arriverez vous à retrouver votre cible ?
     </p>
     <p class="center">
       <span id="chronotime">0:00:00:00</span>
