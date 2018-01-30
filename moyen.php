@@ -111,13 +111,38 @@ $portes = array(
   )
 );
 
+$trappes = array(
+  0 => array(
+    "type" => "trappe",
+    "nom" => "trappe1",
+    "attributs" => "t1"
+  ),
+  1 => array(
+    "type" => "trappe",
+    "nom" => "trappe2",
+    "attributs" => "t2"
+  ),
+  2 => array(
+    "type" => "trappe",
+    "nom" => "trappe2",
+    "attributs" => "t2"
+  ),
+);
+
 // Preparation du plateau de jeu
 shuffle($plateau);
-array_push($plateau, $plateau[0], $plateau[7], $plateau[14]);
-
+array_push($plateau, $plateau[0]);
 $plateau[0] = $portes[0];
-$plateau[7] = $portes[1];
-$plateau[14] = $portes[2];
+array_push($plateau, $plateau[4]);
+$plateau[4] = $trappes[0];
+array_push($plateau, $plateau[8]);
+$plateau[8] = $portes[1];
+array_push($plateau, $plateau[12]);
+$plateau[12] = $trappes[1];
+array_push($plateau, $plateau[16]);
+$plateau[16] = $portes[2];
+array_push($plateau, $plateau[18]);
+$plateau[18] = $trappes[2];
 
 $plateau_size = count($plateau);
 
@@ -138,6 +163,12 @@ $current_tile = $porte_d_entree;
 if ($sens == 'horaire') {
   while ($plateau[$current_tile]['attributs'] !== $attributs) {
     $current_tile = goToNextTile($current_tile, $plateau_size);
+
+    if (isTrappe($current_tile)) {
+      $current_tile = goNextTrappe($current_tile);
+    }
+
+    echo $current_tile. ' ';
   }
 
   $target = $plateau[$current_tile]['nom'];
@@ -145,6 +176,12 @@ if ($sens == 'horaire') {
 } elseif ($sens == 'antihoraire') {
   while ($plateau[$current_tile]['attributs'] !== $attributs) {
     $current_tile = goToPreviousTile($current_tile, $plateau_size);
+
+    if (isTrappe($current_tile)) {
+      $current_tile = goPreviousTrappe($current_tile);
+    }
+
+    echo $current_tile. ' ';
   }
 
   $target = $plateau[$current_tile]['nom'];
@@ -159,9 +196,8 @@ if ($sens == 'horaire') {
       MODE FACILE <a href="moyen.php">MODE MOYEN</a> <a href="difficile.php">MODE DIFFICILE</a>
     </p>
     <p>
-      Retrouvez votre cible et cliquez dessus : la premiere icone vous indique le sexe de votre cible, la deuxieme icone vous indique la couleur de sa tenue, la troisieme
-      icone vous indique l'arme de votre cible, enfin la derniere icone vous indique par quelle porte votre cible s'est echappée (bleue, rouge ou jaune) et dans quelle $sens
-      elle s'est enfui (horaire ou anti-horaire).
+      Désormais, les ninjas peuvent emprunter des trappes. Si le ninja que vous cherchez à rencontré une trappe sur sa route, il
+      y est entré et est ressorti par la trappe suivante avant de continuer son chemin.
     </p>
     <p class="center">
       <span id="chronotime">0:00:00:00</span>
@@ -174,44 +210,47 @@ if ($sens == 'horaire') {
   </div>
   <div class="plateauTest">
     <div class="ligneTest">
-      <div class="vide15"></div>
-      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[16]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[16]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[17]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[17]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[18]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[18]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="vide5"></div>
+      <div class="tuileTest1"><img src="images/trappe.jpg" class="ninjatest"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[19]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[19]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[20]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[20]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[21]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[21]['attributs']; ?>.png" class="ninjatest"></a></div>
       <div class="tuileTest2"><img src="images/<?php echo $plateau[0]['nom']; ?>.png" class="ninjatest"></div>
       <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[1]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[1]['attributs']; ?>.png" class="ninjatest"></a></div>
       <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[2]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[2]['attributs']; ?>.png" class="ninjatest"></a></div>
       <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[3]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[3]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><img src="images/trappe.jpg" class="ninjatest"></div>
     </div>
     <div class="ligneTest2">
-      <div class="vide10"></div>
-      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[15]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[15]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="vide60"><p style="width:100%;text-align:center;margin-bottom:0px;">Vous recherchez :<span id="target" class="hidden"><?php echo $target; ?></span></p></div>
-      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[4]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[4]['attributs']; ?>.png" class="ninjatest"></a></div>
-    </div>
-    <div class="ligneTest">
-      <div class="vide10"></div>
-      <div class="tuileTest2"><img src="images/<?php echo $plateau[14]['nom']; ?>.png" class="ninjatest"></div>
-      <div class="vide15"><p id="de-sex" style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $de_sexe ?>.png"></p></div>
-      <div class="vide15"><p id="de-color" style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $de_couleur ?>.png"></p></div>
-      <div class="vide15"><p id="de-weapon" style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $de_arme ?>.jpg"></p></div>
-      <div class="vide15"><p style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $entree ?>.png"></p></div>
+      <div class="vide5"></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[17]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[17]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="vide70"><p style="width:100%;text-align:center;margin-bottom:0px;">Vous recherchez :<span id="target" class="hidden"><?php echo $target; ?></span></p></div>
       <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[5]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[5]['attributs']; ?>.png" class="ninjatest"></a></div>
     </div>
-    <div class="ligneTest2">
-      <div class="vide10"></div>
-      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[13]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[13]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="vide60"></div>
+    <div class="ligneTest">
+      <div class="vide5"></div>
+      <div class="tuileTest2"><img src="images/<?php echo $plateau[16]['nom']; ?>.png" class="ninjatest"></div>
+      <div class="vide15"><p id="de-sex" style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $de_sexe ?>.png"></p></div>
+      <div class="vide15"><p id="de-color" style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $de_couleur ?>.png"></p></div>
+      <div class="vide20"><p id="de-weapon" style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $de_arme ?>.jpg"></p></div>
+      <div class="vide20"><p style="width:100%;text-align:center;margin-bottom:0px;"><img src="images/dices/<?php echo $entree ?>.png"></p></div>
       <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[6]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[6]['attributs']; ?>.png" class="ninjatest"></a></div>
     </div>
+    <div class="ligneTest2">
+      <div class="vide5"></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[15]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[15]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="vide70"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[7]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[7]['attributs']; ?>.png" class="ninjatest"></a></div>
+    </div>
     <div class="ligneTest">
-      <div class="vide20"></div>
-      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[12]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[12]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[11]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[11]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[10]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[10]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[9]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[9]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[8]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[8]['attributs']; ?>.png" class="ninjatest"></a></div>
-      <div class="tuileTest2"><img src="images/<?php echo $plateau[7]['nom']; ?>.png" class="ninjatest"></div>
+      <div class="vide15"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[14]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[14]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[13]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[13]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><img src="images/trappe.jpg" class="ninjatest"></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[11]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[11]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><a href="#" onclick="verifNinja(<?php echo $plateau[10]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[10]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest1"><a href="#" onclick="verifNinja(<?php echo $plateau[9]['nom']. ', ' .$target?>)"><img src="images/<?php echo $plateau[9]['attributs']; ?>.png" class="ninjatest"></a></div>
+      <div class="tuileTest2"><img src="images/<?php echo $plateau[8]['nom']; ?>.png" class="ninjatest"></div>
     </div>
   </div>
 

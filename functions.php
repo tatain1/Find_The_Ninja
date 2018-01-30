@@ -88,5 +88,31 @@ function goToPreviousTile($current_tile, $plateau_size) {
   }
 }
 
+function isTrappe($tile) {
+  if ($tile == 4 || $tile == 12 || $tile == 18) {
+    return true;
+  }
+}
+
+function goNextTrappe($tile) {
+  if ($tile == 4) {
+    return 12;
+  } elseif ($tile == 12) {
+    return 18;
+  } elseif ($tile == 18) {
+    return 4;
+  }
+}
+
+function goPreviousTrappe($tile) {
+  if ($tile == 4) {
+    return 18;
+  } elseif ($tile == 12) {
+    return 4;
+  } elseif ($tile == 18) {
+    return 12;
+  }
+}
+
 
  ?>

@@ -66,6 +66,11 @@
 .floatCleaner {
   clear: both;
 }
+.vide5 {
+  margin: -1px;
+  width: 5%;
+  display: inline-flex;
+}
 .vide10 {
   margin: -1px;
   width: 10%;
@@ -76,12 +81,25 @@
   width: 15%;
   display: inline-flex;
 }
+.vide17 {
+  margin: -1px;
+  width: 17%;
+  display: inline-flex;
+}
 .vide20 {
   width: 20%;
   display: inline-flex;
 }
+.vide25 {
+  width: 25%;
+  display: inline-flex;
+}
 .vide60 {
   width: 60%;
+  display: inline-flex;
+}
+.vide70 {
+  width: 70%;
   display: inline-flex;
 }
 .center {

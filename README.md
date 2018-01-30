@@ -11,4 +11,5 @@ Reste a faire :
 * Possibilité d'activer/desactiver les modules de changement de sexe, arme et couleur (mode de difficulté).
 * Randomiser le placement des ninjas. : DONE !
 * Mode de jeu "foule".
+* Mode multijoueurs.
 * Ajout d'achievements.
