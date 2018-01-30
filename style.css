@@ -50,13 +50,13 @@
   width: 100%;
 }
 .tuileTest1 {
-  margin: -1px;
-  width: 10%;
+  margin: -2px;
+  width: 9.8%;
   display: inline-flex;
 }
 .tuileTest2 {
-  margin: -1px;
-  width: 10%;
+  margin: -2px;
+  width: 9.8%;
   display: inline-flex;
 }
 .ninjatest {
@@ -100,6 +100,10 @@
 }
 .vide70 {
   width: 70%;
+  display: inline-flex;
+}
+.vide80 {
+  width: 80%;
   display: inline-flex;
 }
 .center {
