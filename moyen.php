@@ -189,7 +189,7 @@ if ($sens == 'horaire') {
   <!-- ZONE DE TEST  -->
   <div class="rules">
     <p class="center">
-      MODE FACILE <a href="moyen.php">MODE MOYEN</a> <a href="difficile.php">MODE DIFFICILE</a>
+      <a href="index.php">MODE FACILE</a> <a href="moyen.php">MODE MOYEN</a> <a href="difficile.php">MODE DIFFICILE</a> <a href="extreme.php">MODE EXTREME</a> 
     </p>
     <p>
       Désormais, les ninjas peuvent emprunter des trappes. Si le ninja que vous cherchez à rencontré une trappe sur sa route, il

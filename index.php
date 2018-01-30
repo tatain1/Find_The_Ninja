@@ -156,7 +156,7 @@ if ($sens == 'horaire') {
   <!-- ZONE DE TEST  -->
   <div class="rules">
     <p class="center">
-      MODE FACILE <a href="moyen.php">MODE MOYEN</a> <a href="difficile.php">MODE DIFFICILE</a>
+      <a href="index.php">MODE FACILE</a> <a href="moyen.php">MODE MOYEN</a> <a href="difficile.php">MODE DIFFICILE</a> <a href="extreme.php">MODE EXTREME</a>
     </p>
     <p>
       Retrouvez votre cible et cliquez dessus : la premiere icone vous indique le sexe de votre cible, la deuxieme icone vous indique la couleur de sa tenue, la troisieme

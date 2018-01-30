@@ -124,5 +124,39 @@ function goPreviousTrappe($tile) {
   }
 }
 
+function isSwapper($tile) {
+  if ($tile == 4 || $tile == 12 || $tile == 18) {
+    return true;
+  }
+}
+
+function swapAttribut($tile, $attributs) {
+  if ($tile == 4) {
+    if ($attributs[0] == "h") {
+      $attributs = "f".$attributs[1].$attributs[2];
+      return $attributs;
+    } elseif ($attributs[0] == "f") {
+      $attributs = "h".$attributs[1].$attributs[2];
+      return $attributs;    }
+  }
+  if ($tile == 12) {
+    if ($attributs[1] == "r") {
+      $attributs = $attributs[0].'v'.$attributs[2];
+      return $attributs;
+    } elseif ($attributs[1] == "v") {
+      $attributs = $attributs[0].'r'.$attributs[2];
+      return $attributs;
+    }
+  }
+  if ($tile == 18) {
+    if ($attributs[2] == "k") {
+      $attributs = $attributs[0].$attributs[1].'s';
+      return $attributs;
+    } elseif ($attributs[2] == "s") {
+      $attributs = $attributs[0].$attributs[1].'k';
+      return $attributs;    }
+  }
+}
+
 
  ?>
