@@ -148,7 +148,7 @@ $plateau_size = count($plateau);
 
 // Tirage de la porte d'entrée
 $de_porte = rand(1, 6);
-$porte_d_entree = entryGate($de_porte);
+$porte_d_entree = entryGateM($de_porte);
 $sens = isPaire($de_porte);
 $entree = getEntryColor($de_porte).$sens;
 
@@ -167,8 +167,6 @@ if ($sens == 'horaire') {
     if (isTrappe($current_tile)) {
       $current_tile = goNextTrappe($current_tile);
     }
-
-    echo $current_tile. ' ';
   }
 
   $target = $plateau[$current_tile]['nom'];
@@ -180,8 +178,6 @@ if ($sens == 'horaire') {
     if (isTrappe($current_tile)) {
       $current_tile = goPreviousTrappe($current_tile);
     }
-
-    echo $current_tile. ' ';
   }
 
   $target = $plateau[$current_tile]['nom'];
