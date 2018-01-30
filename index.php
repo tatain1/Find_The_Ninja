@@ -160,7 +160,7 @@ if ($sens == 'horaire') {
     </p>
     <p>
       Retrouvez votre cible et cliquez dessus : la premiere icone vous indique le sexe de votre cible, la deuxieme icone vous indique la couleur de sa tenue, la troisieme
-      icone vous indique l'arme de votre cible, enfin la derniere icone vous indique par quelle porte votre cible s'est echappée (bleue, rouge ou jaune) et dans quelle $sens
+      icone vous indique l'arme de votre cible, enfin la derniere icone vous indique par quelle porte votre cible s'est echappée (bleue, rouge ou jaune) et dans quelle sens
       elle s'est enfui (horaire ou anti-horaire).
     </p>
     <p class="center">
